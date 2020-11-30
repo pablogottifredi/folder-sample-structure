@@ -1,0 +1,53 @@
+html, body
+{
+    height: 100%;
+}
+p {
+    margin-top:0px;
+}
+#root {
+    min-height:100vh!important;
+    overflow: hidden;
+}
+.min-height-loading {
+    height:30px;
+    min-height: 30px;
+}
+.status {
+    position:absolute;
+    float:right;
+    top:0px;
+    right:0px;
+    padding-top:0px;
+    padding-right:10px;
+    
+}
+.status p {
+    margin-top:0px;
+    margin-bottom:0px;
+
+}
+.no-padding {
+    padding-top:0px;
+    padding-bottom:0px;
+    margin-bottom:0px;
+}
+.default-padding{
+    padding:2%;
+    padding-left:4%;
+}
+.min-padding-top {
+    padding-top:0px;
+}
+.min-padding-bottom{
+    padding-bottom:0px;
+    margin-bottom:0px;
+}
+.float-left {
+    float:left;
+}
+
+.full-height {
+    min-height: 100vh!important;
+    height:100%!important;
+}

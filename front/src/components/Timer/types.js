@@ -1,0 +1,2 @@
+export const TIMER_EXPIRED = 'TIMER_EXPIRED';
+export const TIMER_STARTED = 'TIMER_STARTED';

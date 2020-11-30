@@ -1,0 +1,204 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Invgate Coding Test. API documentation",
+    "description": "A documented API using OpenAPI 3.0 specification. Only for test purposes",
+    "contact": {
+      "name": "Pablo Gottifredi",
+      "email": "pablo.gottifredi@gmail.com",
+      "url": "http://linkedin.com/in/pablogottifredi"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers": [
+    {
+      "description": "API Server behind nginx gateway at 5003",
+      "url": "http://localhost:5003/api/v2"
+    },
+    {
+      "description": "API Server exposed in dev mode at 5000",
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/incidents.by.helpdesk/search/": {
+      "get": {
+        "tags": [
+          "incidents.by.helpesk"
+        ],
+        "description": "Search a text into incidents grouped into a helpdesk_id.",
+        "operationId": "getSearchTextIncidentsHelpdesk",
+        "parameters": [
+          {
+            "name": "helpdesk_id",
+            "in": "query",
+            "description": "Helpdeks id where incidents are grouped",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "text_to_search",
+            "in": "query",
+            "description": "Text criteria, search a using %like% over title and description fields of incidents model",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "detailed",
+            "in": "query",
+            "description": "Define if result if full filled with incidents fields or only retrun ids. 0 Only Id (default), 1 full filled.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/searchIncidentsResponse"
+                  }
+                }
+              }
+            }
+          },
+          "428": {
+            "description": "Precondition in parameters failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/incidents.by.helpdesk/search/tags": {
+      "get": {
+        "tags": [
+          "incidents.by.helpesk"
+        ],
+        "description": "Return top 5 most searched string. Filtered by helpdesk id. If not define id, return global ranking. Partial words are not indexed",
+        "operationId": "getSearchTextIncidentsRankHelpdesk",
+        "parameters": [
+          {
+            "name": "helpdesk_id",
+            "in": "query",
+            "description": "Helpdeks id where incidents are grouped.",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of tags",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/searchIncidentsTagsRankingResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Helpdeks id not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "searchIncidentsResponse": {
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "searchIncidentsTagsRankingResponse": {
+        "properties": {
+          "tag": {
+            "type": "string"
+          }
+        }
+      },
+      "error": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

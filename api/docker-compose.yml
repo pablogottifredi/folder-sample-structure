@@ -1,0 +1,60 @@
+version: "3.5"
+
+services:
+  api-invgate-facade:
+    restart: always
+    container_name: api-invgate-facade
+    env_file: .env
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: yarn watch
+    image: api-invgate-facade
+    depends_on:
+      - api-invgate-cache
+    networks:
+      api-invgate-backend-network:
+        aliases:
+          - api-invgate-facade
+
+  api-invgate-cache:
+    restart: always
+    container_name: api-invgate-cache
+    image: redis:buster
+    networks:
+      api-invgate-backend-network:
+        aliases:
+          - api-invgate-cache
+
+  api-invgate-doc:
+    image: swaggerapi/swagger-ui
+    container_name: api-invgate-doc
+    volumes:
+      - ./doc/openapi.json:/openapi.json
+    environment:
+      SWAGGER_JSON: /openapi.json
+    networks:
+      api-invgate-backend-network:
+        aliases:
+          - api-invgate-doc
+
+
+  api-invgate-gateway:
+    image: nginx:alpine
+    container_name: api-invgate-gateway
+    restart: always
+    ports:
+      - "5003:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - api-invgate-backend-network
+    depends_on:
+      - api-invgate-facade
+      - api-invgate-doc
+
+networks:
+  api-invgate-backend-network:
+    name: "api-invgate-backend-network"
+    driver: "bridge"
+ 

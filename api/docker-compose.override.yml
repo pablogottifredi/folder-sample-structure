@@ -1,0 +1,34 @@
+version: "3.5"
+
+services:
+  api-invgate-facade:
+    environment:
+        LOG_LEVEL: info
+    volumes:
+      - ./src:/dist/src
+    command: yarn watch
+    ports:
+      - "5000:3000"
+  
+  api-invgate-doc:
+    image: swaggerapi/swagger-ui
+    container_name: api-invgate-doc
+    ports:
+      - "5001:8080"
+    volumes:
+      - ./doc/invgate.api.v2.openapi.json:/invgate.api.v2.openapi.json
+    environment:
+      SWAGGER_JSON: /invgate.api.v2.openapi.json
+    networks:
+      - api-invgate-backend-network
+
+  api-invgate-gateway:
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "5003:80"
+    
+  api-invgate-cache:
+   ports:
+      - "5004:6379"
+  

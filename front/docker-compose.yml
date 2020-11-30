@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  front-invgate:
+    restart: always
+    container_name: front-invgate
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: yarn build
+    image: front-invgate
+    networks:
+      - api-invgate-backend-network
+
+networks:
+  api-invgate-backend-network:
+    external:
+      name: api-invgate-backend-network
+ 

@@ -1,0 +1,4 @@
+export const TAGS_DATA_CHANGED = 'TAGS_DATA_CHANGED';
+export const TAG_SELECTED = 'TAG_SELECTED';
+
+export const COMPONENT_NAME = 'TAGS';

@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  front-invgate:
+    volumes:
+      - ./src:/dist/src
+    command: yarn start
+    ports:
+      - "5005:4100"
+  

@@ -1,0 +1,49 @@
+{
+  "name": "api-node-invgate-facade",
+  "version": "1.0.0",
+  "description": "Api Node 12 facade invgate api only for test purposes",
+  "main": "index.js",
+  "author": "Pablo A. Gottifredi",
+  "license": "ISC",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && npx babel src --out-dir dist",
+    "start": "node dist/server.js",
+    "watch": "nodemon --watch src -e js src/server.js --exec babel-node",
+    "setup": "cp .env.example .env",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "boilerplate",
+    "express",
+    "es6"
+  ],
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "@hapi/joi": "^15.1.0",
+    "@types/hapi__joi": "^15.0.3",
+    "async": "^3.1.0",
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "compression": "^1.7.3",
+    "cors": "^2.8.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-validator": "^5.1.2",
+    "pkginfo": "^0.4.1",
+    "pug": "^2.0.3",
+    "redis": "^2.8.0",
+    "redis-app": "^0.13.6",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.4",
+    "cross-var": "^1.1.0",
+    "nodemon": "^1.15.0"
+  }
+}
