@@ -1,0 +1,38 @@
+version: "3.5"
+
+services:
+  invgate-test-db:
+    image: postgres
+    restart: always 
+    container_name: invgate-test-db
+    environment:
+      ## THIS IS THE DEFAULT PASSWORD for user postgres
+      POSTGRES_PASSWORD: invgate
+      POSTGRES_USER: invgate
+      POSTGRES_DB: invgate_test
+    volumes:
+      - ./data:/host/scripts
+    
+    ports:
+      - 5432:5432    
+    networks:
+      invgate-db-network:
+        aliases:
+          - pg.invgate.local
+
+  generic-admin-database:
+    image: adminer
+    restart: always
+    container_name: generic-admin-database
+    ports:
+      - 9012:8080    
+    networks:
+      invgate-db-network:
+        aliases:
+          - pg-dbadmin.invgate.local
+
+networks:
+  invgate-db-network:
+    name: invgate-db-network
+    driver: "bridge"
+  

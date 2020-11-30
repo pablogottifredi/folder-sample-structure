@@ -1,0 +1,13 @@
+{
+  "name": "querying-test-full-stack",
+  "version": "1.0.0",
+  "description": "A simple test of query grouping",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run import",
+    "import": "docker-compose up -d --build  && docker exec -ti invgate-test-db psql -d invgate_test -U invgate  -f /host/scripts/data.dump.sql",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pablo A. Gottifredi",
+  "license": "ISC"
+}
