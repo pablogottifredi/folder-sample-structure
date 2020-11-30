@@ -16,7 +16,7 @@ Need more help? Follow this instruction for [beginners users](https://github.com
   
 
 ## Quick instructions
-* Clone from [here]() 
+* Clone from [https://github.com/pablogottifredi/folder-sample-structure](https://github.com/pablogottifredi/folder-sample-structure) 
 * Go to folder-sample-structure folder
 * Run cp api/.env.example api/.env
 * Add your credential in KEY API_PASSWORD in api/.env 
