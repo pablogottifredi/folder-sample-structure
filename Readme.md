@@ -31,11 +31,11 @@ Good luck!
 
 ### 1. Get from repo
 
-Clone using your own credentials from repo []()
+Clone using your own credentials from repo [https://github.com/pablogottifredi/folder-sample-structure](https://github.com/pablogottifredi/folder-sample-structure)
 
   
 ```
-$ git clone https://github.com/pablogottifredi/invg-coding-test.git
+$ git clone https://github.com/pablogottifredi/folder-sample-structure
 ```
 
 
@@ -69,18 +69,18 @@ API_BASE_ROUTE=http://localhost:3001/api/v1
 
 > USES A STATIC CONFIG OF GATEWAY at http://localhost:5003/api/v2
 
-> [agent of incidents](https://github.com/pablogottifredi/invg-coding-test/blob/master/coding-test-fullstack/front/src/components/IncidentList/agent.js) and [agent of tags](https://github.com/pablogottifredi/invg-coding-test/blob/master/coding-test-fullstack/front/src/components/Tags/agent.js)
+> [agent of incidents](https://github.com/pablogottifredi/folder-sample-structure/blob/master/front/src/components/IncidentList/agent.js) and [agent of tags](https://github.com/pablogottifredi/folder-sample-structure/blob/master/front/src/components/Tags/agent.js)
 
 
 ### 4. Run using docker-compose
 
 All the environment is ready to use without aditional install
 
-> Use ***docker-compose up -d*** into coding-test-full-stack folder
+> Use ***docker-compose up -d*** into folder-sample-structure folder
   
 
 ```
-:~invg-coding-test/coding-test-full-stack$ docker-compose up -d
+:~folder-sample-structure$ docker-compose up -d
 ```
 
 
